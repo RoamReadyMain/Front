@@ -1,24 +1,30 @@
 //The list of countries 
 
-import React from "react";
-import{safeAreaView , View , Pressable,TouchableHighlight ,Text , StyleSheet ,Image, FlatList , ScrollView} from 'react-native';
-
-import Item from "../../../Componants/item";
-//import palstine from "D:/UNI/level3/SoftwareEng_303/FinalProject/RoamReady/temp2/Application/RoamReady/assets/Countries/1.jpg";
+import React  , {useEffect , useState} from "react";
+import{ View , TextInput ,Text , StyleSheet , FlatList , ScrollView} from 'react-native';
+import Countries from "../../../Componants/Countries";
 import {  useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Search from "@/Componants/Search";
 
-export default function Country({ref}){
+export default function Flight(){
     //the paths of images
     const palstine = require('../../../assets/Countries/Paliestine.jpg');
-    const a = require('../assets/images/2.jpg');
-    const b = require('../assets/images/7.jpg');
-    const c = require('../assets/images/4.jpg');
-    const d = require('../assets/images/5.jpg');
+    const a = require('../../../assets/Countries/2.jpg');
+    const b = require('../../../assets/Countries/7.jpg');
+    const c = require('../../../assets/Countries/4.jpg');
+    const d = require('../../../assets/Countries/5.jpg');
 
+     //Search var
+     const [query , setQuery] = useState('');
+     const [disList , setDisList] = useState([]);
+     const [showInput, setShowInput] = useState(false);
+
+    
     const route = useRouter();
 
     //list of data
-    const data = [
+    const Data = [
         { id: '1', name: 'Paliestina', img: palstine  , Price : '10000$'},
         { id: '2', name: 'Egypt', img: a  , Price : '10000$'},
         { id: '3', name: 'New Yourk', img: b  , Price : '10000$'},
@@ -38,24 +44,69 @@ export default function Country({ref}){
     ];
     const renderItem = ({ item }) => (
         <View style ={styles.items}>
-            <Item
+            <Countries
                 img={item.img}
                 name ={item.name}
-                
-                onPress={() => route.push('/(tabs)/Flights')}
+                onPress={() => route.push('/(tabs)/Hotels')}
             />
         </View>
     );
 
+    //Search handling//////////////////////////////////////////////////////////////////////
+    useEffect(() => {
+        setDisList(Data);
+    },[]);
+    
+    useEffect(() => {
+        async function fetchFilteredData() {
+          try {
+            // Retrieve saved search query from AsyncStorage
+            const savedSearchQuery = await AsyncStorage.getItem('query');
+            if (savedSearchQuery) {
+              setQuery(savedSearchQuery);
+            }
+          } catch (error) {
+            console.error('Error retrieving search query from AsyncStorage:', error);
+          }
+        }
+    
+        fetchFilteredData();
+      }, []);
+    
+
+    useEffect(() => {
+        if (query.trim() === "") {
+            setDisList(Data);
+            setShowInput(false);
+        } else {
+            const filteredList = Data.filter(
+                (item) => item.name.toLowerCase().includes(query.toLowerCase())
+            );
+            setDisList(filteredList);
+            AsyncStorage.setItem('query', query);
+        }
+    },[query ]);
+
     return (
         <ScrollView>
         <View style={styles.container}>
+            <View style = {styles.searchContainer}>
+                {showInput && (
+                    <TextInput 
+                        placeholder="Search..."
+                        value={query}
+                        onChangeText={setQuery}
+                        style ={styles.input}
+                    />
+                )}
+                <Search onPress={() => setShowInput(true)}/>
+            </View>
             
             <Text style={styles.header}>Choose Your destination</Text>
             <View style={styles.listContaier}>
             <FlatList
                 style={styles.list}
-                data={data}
+                data={Data}
                 keyExtractor={item => item.id}
                 renderItem={renderItem}
                 numColumns={3}
@@ -103,5 +154,21 @@ const styles = StyleSheet.create({
     items:{
         flex :1,
         flexDirection:'row'
-    }
+    },
+    searchContainer:{
+        marginLeft:1000,
+        flexDirection:'row',
+        margin:4,
+        padding:2,
+    },
+    input:{
+        width :'55%',
+        height :30,
+        borderWidth:1,
+        borderColor : '#7392b7',
+        borderRadius :6 ,
+        padding :10,
+        margin :8,
+        //borderBlockColor :'#c5d5ea' 
+    },
 });

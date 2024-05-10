@@ -7,13 +7,16 @@ import MyButton from '@/Componants/MyButton';
 
 export default function _layout() {
     const router = useRouter();
+    const icon = require('./../../assets/Logo/Favicon.png');
+
     return(
         <Stack
             screenOptions={{
                 headerStyle: {
-                    backgroundColor:'black',
+                    backgroundColor:'#333333',
                 },
-                headerTintColor:'white'
+                headerTintColor:'white',
+                headerBackImageSource:{icon}
             }}
         >
             <Stack.Screen name='Country' options={{
@@ -28,9 +31,11 @@ export default function _layout() {
                 title : 'Hotel',
                 
             }}/>
-            <Stack.Screen name='[missing]' options={{
-                title : '404'
+           
+            <Stack.Screen name='Countries' options={{
+                headerShown : false
             }}/>
+            
            
             
         </Stack>

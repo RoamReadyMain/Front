@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { Link } from "expo-router";
 import Item from "@/Componants/item";
 
-export default function Page() {
+export default function Page({trip}) {
     const route =useRouter();
 
     const plane = require('../../assets/Flight/1.jpg');

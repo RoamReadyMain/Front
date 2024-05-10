@@ -1,12 +1,12 @@
 import React from "react";
-import { ScrollView, View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Image, FlatList, TextInput } from 'react-native';
 
 import { useRouter } from "expo-router";
 import { Link } from "expo-router";
 
 import Item from "@/Componants/item";
 
-export default function Page() {
+export default function Page({item}) {
     const route =useRouter();
 
     const room = require('../../assets/Double/1.jpg');

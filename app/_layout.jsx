@@ -3,10 +3,13 @@
 import {View ,Text , StyleSheet, Pressable, Button} from 'react-native'
 import React from 'react'
 import { Stack, useRouter } from 'expo-router'
+
 //import Login from './Login';
 
 export default function _layout() {
     const router = useRouter();
+    const icon = require('./../assets/Logo/Favicon.png');
+
     return(
         <Stack
             screenOptions={{
@@ -17,7 +20,8 @@ export default function _layout() {
             }}
         >
             <Stack.Screen name='index' options={{
-                title : 'Home'
+                title : 'Home',
+                headerBackImageSource:{icon}
             }}/>
             <Stack.Screen
                 name='(tabs)'
@@ -44,6 +48,9 @@ export default function _layout() {
             }}/>
             <Stack.Screen name='[missing]' options={{
                 title : '404'
+            }}/>
+            <Stack.Screen name='Countries' options={{
+                headerShown : false
             }}/>
             
         </Stack>

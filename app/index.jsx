@@ -25,11 +25,11 @@ export default function Page() {
                 <Text>SignUp</Text>
             </Link>
            
-            <Link href='/(tabs)/(Countries)/Hotel' asChild>
-                <Text>Hotel</Text>
+            <Link href='/(tabs)/packages' asChild>
+                <Text>Packages</Text>
             </Link> 
-            <Link href='/(tabs)/(Countries)/Flight' asChild>
-                <Text>Flights</Text>
+            <Link href='/Country' asChild>
+                <Text>Countries</Text>
             </Link>
 
 
