@@ -50,16 +50,16 @@ export default function Country(){
             <Countries
                 img={item.img}
                 name ={item.name}
-                onPress={handleRoutes(item.id)}
+                onPress={()=> router.push('/listing/' + item.id)}
             />
         </View>
     );
 
     //Routes
 
-    const handleRoutes =(id) =>(
-        router.push('/listing/' + id)
-    );
+    // const handleRoutes =(id) =>(
+    //     router.push('/listing/' + id)
+    // );
 
     
    
@@ -94,7 +94,7 @@ export default function Country(){
                 (item) => item.name.toLowerCase().includes(query.toLowerCase())
             );
             setDisList(filteredList);
-            AsyncStorage.setItem('query', query);
+            //AsyncStorage.setItem('query', query);
         }
     },[query ]);
 
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 5,
-        width: 'auto',
-        height: 'auto',
+        width: '30%',
+        height: '30%',
     },
     text: {
         fontSize: 20,

@@ -68,14 +68,14 @@ export function page() {
     // Assuming you have functions to handle navigation to Flights and Hotels
     const handleFlights = () => {
         [setTo(NameCountry(id)) , 
-            route.push('/(tabs)/Flights' , {trip : flightINF}),
+            route.push('/(tabs)/Flights' ),
             setShowFlights(true)
         ]
     };
 
     const handleHotels = () => {
         [
-            route.push('/(tabs)/Hotels' , {item : hotelINF}),
+            route.push('/(tabs)/Hotels'),
             setShowHotels(true)
         ]
     };
@@ -94,7 +94,7 @@ export function page() {
                     <Stack.Screen
                         options={{
                             headerTitle:() => {
-                               'Welco To'+ NameCountry(id)
+                               'Welcome To'+ NameCountry(id)
                             }
                         }}
                     />
@@ -102,7 +102,7 @@ export function page() {
             </View>
             {/* <Text style={styles.header}>{NameCountry(id)}</Text> */}
             <View style={styles.FlightContainer}>
-                {showFlights && (
+                {/* {showFlights && (
                         <View>
                             <TextInput 
                                 placeholder="from..."
@@ -124,7 +124,7 @@ export function page() {
                                 style ={styles.input}
                             />
                         </View>
-                    )}
+                    )} */}
                 <MyButton 
                     onPress={handleFlights}
                     style={({ pressed }) => [
@@ -140,7 +140,7 @@ export function page() {
                 />
            </View>
            <View style={styles.HotelContainer}>
-                {showHotels && (
+                {/* {showHotels && (
                         <View>
                             <TextInput 
                                 placeholder="from..."
@@ -167,7 +167,7 @@ export function page() {
                                 style ={styles.input}
                             />
                         </View>
-                    )}
+                    )} */}
                 <MyButton 
                     onPress={handleHotels}
                     style={({ pressed }) => [

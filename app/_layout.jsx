@@ -49,9 +49,6 @@ export default function _layout() {
             <Stack.Screen name='[missing]' options={{
                 title : '404'
             }}/>
-            <Stack.Screen name='Countries' options={{
-                headerShown : false
-            }}/>
             
         </Stack>
     );

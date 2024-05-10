@@ -2,7 +2,7 @@
 
 import {View ,Text , StyleSheet, Pressable, Button} from 'react-native'
 import React from 'react'
-import { Stack, useRouter } from 'expo-router'
+import { Tabs, useRouter } from 'expo-router'
 import MyButton from '@/Componants/MyButton';
 
 export default function _layout() {
@@ -10,7 +10,7 @@ export default function _layout() {
     const icon = require('./../../assets/Logo/Favicon.png');
 
     return(
-        <Stack
+        <Tabs
             screenOptions={{
                 headerStyle: {
                     backgroundColor:'#333333',
@@ -19,26 +19,19 @@ export default function _layout() {
                 headerBackImageSource:{icon}
             }}
         >
-            <Stack.Screen name='Country' options={{
-                title : 'Country',
-                presentation : 'modal'
-            }}/>
-            <Stack.Screen name='Flights' options={{
+            
+            <Tabs.Screen name='Flights' options={{
                 title : 'Flights',
                 
             }}/>
-            <Stack.Screen name='Hotels' options={{
+            <Tabs.Screen name='Hotels' options={{
                 title : 'Hotel',
                 
             }}/>
-           
-            <Stack.Screen name='Countries' options={{
-                headerShown : false
-            }}/>
             
            
             
-        </Stack>
+        </Tabs>
     );
 }
 const styles = StyleSheet.create({

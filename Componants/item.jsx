@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 
 
 
-export default function Item ({img , onPress , name , price}) {
+export default function Item ({img , onPress , name , price , type , Class , to}) {
 
     return(
         <View style ={styles.container}>
@@ -24,6 +24,9 @@ export default function Item ({img , onPress , name , price}) {
                     <View style ={styles.textcontainer}>
                         <Text style={styles.text}>{name}</Text>
                         <Text style={styles.text}>{price}</Text>
+                        <Text style={styles.text}>{type}</Text>
+                        <Text style={styles.text}>{Class}</Text>
+                        <Text style={styles.text}>{to}</Text>
                     </View>
                     
                 </Pressable>

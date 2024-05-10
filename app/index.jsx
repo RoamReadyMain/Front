@@ -25,9 +25,7 @@ export default function Page() {
                 <Text>SignUp</Text>
             </Link>
            
-            <Link href='/(tabs)/packages' asChild>
-                <Text>Packages</Text>
-            </Link> 
+           
             <Link href='/Country' asChild>
                 <Text>Countries</Text>
             </Link>
